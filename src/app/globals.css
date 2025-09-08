@@ -18,7 +18,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Animações personalizadas mais sofisticadas */
+/* Animacoes personalizadas */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -94,7 +94,7 @@ body {
   animation: shimmer 2s infinite;
 }
 
-/* Efeito de partículas/flores flutuantes melhorado */
+/* Efeito de particulas flutuantes */
 .floating-element {
   position: absolute;
   pointer-events: none;
@@ -103,7 +103,7 @@ body {
 }
 
 .floating-element::before {
-  content: '?';
+  content: '*';
   font-size: 20px;
   color: var(--golden-text);
   animation: breathe 6s ease-in-out infinite;
@@ -111,12 +111,12 @@ body {
 }
 
 .floating-element:nth-child(2n)::before {
-  content: '?';
+  content: '+';
   animation-delay: 2s;
 }
 
 .floating-element:nth-child(3n)::before {
-  content: '?';
+  content: '~';
   animation-delay: 4s;
 }
 
