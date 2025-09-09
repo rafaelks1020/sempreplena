@@ -570,12 +570,12 @@ export default function Home() {
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
-            gap: "30px",
+            gap: isMobile ? "20px" : "30px",
             alignItems: "stretch",
             justifyContent: "center",
-            maxWidth: "1000px",
+            maxWidth: isMobile ? "100%" : "1000px",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: isMobile ? "0 15px" : "0 20px",
           }}
         >
           {/* Informações de Contato */}
@@ -584,21 +584,21 @@ export default function Home() {
               flex: 1,
               backgroundColor: "rgba(255, 255, 255, 0.15)",
               borderRadius: "20px",
-              padding: "40px 30px",
+              padding: isMobile ? "25px 20px" : "40px 30px",
               border: "2px solid rgba(156, 122, 71, 0.3)",
               boxShadow: "0 8px 25px rgba(156, 122, 71, 0.15)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              minHeight: "300px",
+              minHeight: isMobile ? "auto" : "300px",
               backdropFilter: "blur(10px)",
             }}
           >
             <h3
               style={{
-                fontSize: "clamp(1.3rem, 4vw, 1.5rem)",
+                fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
                 color: "#9c7a47",
-                marginBottom: "25px",
+                marginBottom: isMobile ? "20px" : "25px",
                 fontWeight: "600",
                 textAlign: "center",
               }}
@@ -606,11 +606,11 @@ export default function Home() {
               Débora Massoterapeuta
             </h3>
 
-            <div style={{ marginBottom: "20px", textAlign: "center" }}>
+            <div style={{ marginBottom: isMobile ? "15px" : "20px", textAlign: "center" }}>
               <p
                 style={{
-                  margin: "8px 0",
-                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  margin: "5px 0",
+                  fontSize: "clamp(0.9rem, 3.5vw, 1.1rem)",
                   color: "#9c7a47",
                 }}
               >
@@ -624,9 +624,9 @@ export default function Home() {
                   color: "#25D366",
                   textDecoration: "none",
                   fontWeight: "bold",
-                  fontSize: "clamp(1rem, 3.5vw, 1.2rem)",
+                  fontSize: "clamp(0.95rem, 3.5vw, 1.2rem)",
                   display: "inline-block",
-                  padding: "8px 15px",
+                  padding: isMobile ? "6px 12px" : "8px 15px",
                   backgroundColor: "rgba(37, 211, 102, 0.1)",
                   borderRadius: "15px",
                   transition: "all 0.3s ease",
@@ -646,11 +646,11 @@ export default function Home() {
               </a>
             </div>
 
-            <div style={{ marginBottom: "20px", textAlign: "center" }}>
+            <div style={{ marginBottom: isMobile ? "15px" : "20px", textAlign: "center" }}>
               <p
                 style={{
-                  margin: "8px 0",
-                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  margin: "5px 0",
+                  fontSize: "clamp(0.9rem, 3.5vw, 1.1rem)",
                   color: "#9c7a47",
                 }}
               >
@@ -664,9 +664,9 @@ export default function Home() {
                   color: "#E4405F",
                   textDecoration: "none",
                   fontWeight: "bold",
-                  fontSize: "clamp(1rem, 3.5vw, 1.2rem)",
+                  fontSize: "clamp(0.95rem, 3.5vw, 1.2rem)",
                   display: "inline-block",
-                  padding: "8px 15px",
+                  padding: isMobile ? "6px 12px" : "8px 15px",
                   backgroundColor: "rgba(228, 64, 95, 0.1)",
                   borderRadius: "15px",
                   transition: "all 0.3s ease",
@@ -689,8 +689,8 @@ export default function Home() {
             <div style={{ textAlign: "center" }}>
               <p
                 style={{
-                  margin: "8px 0",
-                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  margin: "5px 0",
+                  fontSize: "clamp(0.9rem, 3.5vw, 1.1rem)",
                   color: "#9c7a47",
                   fontWeight: "bold",
                 }}
@@ -699,8 +699,8 @@ export default function Home() {
               </p>
               <p
                 style={{
-                  margin: "8px 0",
-                  fontSize: "clamp(0.9rem, 3vw, 1rem)",
+                  margin: "5px 0",
+                  fontSize: "clamp(0.85rem, 3vw, 1rem)",
                   color: "#9c7a47",
                   opacity: 0.9,
                   lineHeight: "1.4",
@@ -720,7 +720,8 @@ export default function Home() {
               borderRadius: "20px",
               overflow: "hidden",
               border: "2px solid rgba(156, 122, 71, 0.3)",
-              minHeight: "300px",
+              minHeight: isMobile ? "250px" : "300px",
+              height: isMobile ? "250px" : "auto",
               boxShadow: "0 8px 25px rgba(156, 122, 71, 0.15)",
             }}
           >
@@ -728,7 +729,11 @@ export default function Home() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d959.5785128412124!2d-47.92046711307146!3d-15.8400829900102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a255f35d1d99b%3A0x7d563ecd6199802e!2sLinea%20Vitta!5e0!3m2!1spt-BR!2sbr!4v1757360988065!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: "300px" }}
+              style={{ 
+                border: 0, 
+                minHeight: isMobile ? "250px" : "300px",
+                height: "100%"
+              }}
               allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
