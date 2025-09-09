@@ -1,6 +1,7 @@
 # 🚀 Como Configurar Variáveis de Ambiente no Vercel
 
 ## 📝 Configuração Local (Feita!)
+
 ✅ O arquivo `.env.local` já foi criado com sua URL do Google Script.
 
 ## 🌐 Configuração para Produção no Vercel
@@ -8,11 +9,13 @@
 ### Opção 1: Pelo Dashboard do Vercel (RECOMENDADO)
 
 1. **Acesse o Vercel Dashboard:**
+
    - Vá para [vercel.com](https://vercel.com)
    - Faça login na sua conta
    - Selecione seu projeto "sempreplena"
 
 2. **Configure a Variável de Ambiente:**
+
    - Vá para **Settings** (Configurações)
    - Clique em **Environment Variables**
    - Clique em **Add New**
@@ -66,7 +69,8 @@ Crie um arquivo `vercel.json` na raiz do projeto:
 
 ## 🔧 Testando Localmente Agora
 
-Sua configuração local já está pronta! 
+Sua configuração local já está pronta!
+
 - O arquivo `.env.local` foi criado
 - Reinicie o servidor Next.js para carregar as variáveis
 - Teste o formulário - os e-mails vão direto para sua planilha!
@@ -80,7 +84,7 @@ npm run dev
 ## 🎯 Próximos Passos
 
 1. ✅ **Configuração local** - Feita!
-2. 📤 **Deploy no Vercel** 
+2. 📤 **Deploy no Vercel**
 3. 🔧 **Configurar variável no Vercel** (escolha uma opção acima)
 4. 🧪 **Testar em produção**
 5. 📊 **Monitorar planilha Google Sheets**

@@ -1,143 +1,72 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
+  let email = '';
+  
   try {
-    const { email } = await request.json();
+    const body = await request.json();
+    email = body.email;
     
-    if (!email || !email.includes('@')) {
-      return NextResponse.json(
-        { error: 'E-mail inválido' },
-        { status: 400 }
-      );
+    if (!email) {
+      return NextResponse.json({ error: 'Email é obrigatório' }, { status: 400 });
     }
 
-    // URL do Google Apps Script que você vai criar
-    const GOOGLE_SCRIPT_URL = process.env.GOOGLE_SCRIPT_URL || '';
-    
-    if (!GOOGLE_SCRIPT_URL) {
-      // Por enquanto, apenas loga no console se não tiver configurado
-      console.log('📧 Novo e-mail cadastrado:', email, new Date().toISOString());
-      
-      return NextResponse.json({ 
-        success: true, 
-        message: 'E-mail cadastrado com sucesso!' 
-      });
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: 'Email inválido' }, { status: 400 });
     }
 
-    // Dados para enviar
-    const payload = {
-      email: email,
-      timestamp: new Date().toISOString(),
-      source: 'SemprePlena Website'
-    };
-
-    console.log('📤 Enviando para Google Sheets:', GOOGLE_SCRIPT_URL);
-    console.log('📤 Payload:', JSON.stringify(payload));
-
-    // Tenta método GET primeiro (mais compatível com Google Apps Script)
-    const params = new URLSearchParams({
-      email: email,
-      timestamp: new Date().toISOString(),
-      source: 'SemprePlena Website'
-    });
-
-    const getUrl = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
-    console.log('📤 Tentando GET:', getUrl);
+    const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
+    const timestamp = new Date().toISOString();
+    const source = 'SemprePlena Website';
     
-    const getResponse = await fetch(getUrl, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    console.log(`📧 Processando cadastro: ${email}`);
 
-    console.log('📨 GET Response status:', getResponse.status);
-    const getResponseText = await getResponse.text();
-    console.log('📨 GET Response body:', getResponseText);
-
-    if (getResponse.ok) {
+    if (googleScriptUrl) {
       try {
-        const jsonResponse = JSON.parse(getResponseText);
-        if (jsonResponse.success || jsonResponse.result === 'success') {
+        // Monta a URL com os parâmetros usando ? para começar os query params
+        const urlWithParams = `${googleScriptUrl}?email=${encodeURIComponent(email)}&timestamp=${encodeURIComponent(timestamp)}&source=${encodeURIComponent(source)}`;
+        
+        console.log('📤 Enviando para Google Sheets:', urlWithParams);
+        
+        const response = await fetch(urlWithParams, {
+          method: 'GET',
+          headers: {
+            'Accept': '*/*',
+          },
+        });
+        
+        console.log(`📨 Response status: ${response.status}`);
+        
+        if (response.ok) {
+          console.log('✅ E-mail salvo no Google Sheets');
           return NextResponse.json({ 
             success: true, 
-            message: 'E-mail cadastrado com sucesso!' 
+            message: 'E-mail cadastrado com sucesso! Obrigado por se inscrever na SemprePlena.',
           });
+        } else {
+          throw new Error(`Google Sheets respondeu com status ${response.status}`);
         }
-      } catch (e) {
-        // Se não conseguir fazer parse, mas response é ok, considerar sucesso
-        if (getResponseText.includes('success') || getResponseText.includes('ok')) {
-          return NextResponse.json({ 
-            success: true, 
-            message: 'E-mail cadastrado com sucesso!' 
-          });
-        }
+        
+      } catch (googleError) {
+        console.log('⚠️ Erro no Google Sheets, usando fallback:', googleError);
       }
     }
-
-    // Se GET não funcionou, tenta POST
-    console.log('📤 Tentando POST...');
-    const postResponse = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-
-    console.log('📨 POST Response status:', postResponse.status);
-    const postResponseText = await postResponse.text();
-    console.log('📨 POST Response body:', postResponseText);
-
-    if (postResponse.ok) {
-      try {
-        const jsonResponse = JSON.parse(postResponseText);
-        if (jsonResponse.success || jsonResponse.result === 'success') {
-          return NextResponse.json({ 
-            success: true, 
-            message: 'E-mail cadastrado com sucesso!' 
-          });
-        }
-      } catch (e) {
-        // Se não conseguir fazer parse, mas response é ok, considerar sucesso
-        if (postResponseText.includes('success') || postResponseText.includes('ok')) {
-          return NextResponse.json({ 
-            success: true, 
-            message: 'E-mail cadastrado com sucesso!' 
-          });
-        }
-      }
-    }
-
-    // Se chegou até aqui, houve erro
-    console.log('❌ Ambos os métodos falharam');
     
-    // Por enquanto, salva localmente e retorna sucesso
-    console.log('📧 FALLBACK - E-mail salvo localmente:', email, new Date().toISOString());
+    // Fallback: salva localmente
+    console.log(`📧 FALLBACK - E-mail salvo localmente: ${email} ${timestamp}`);
     
     return NextResponse.json({ 
       success: true, 
-      message: 'E-mail cadastrado com sucesso! (salvo temporariamente)' 
+      message: 'E-mail cadastrado com sucesso! Obrigado por se inscrever na SemprePlena.',
     });
 
   } catch (error) {
-    console.error('Erro ao processar e-mail:', error);
-    
-    // Em caso de erro, ainda registra o e-mail localmente se disponível
-    try {
-      const { email: errorEmail } = await request.json();
-      if (errorEmail) {
-        console.log('📧 ERROR FALLBACK - E-mail registrado:', errorEmail, new Date().toISOString());
-      }
-    } catch (e) {
-      console.log('📧 ERROR FALLBACK - Erro ao recuperar e-mail do request');
-    }
+    console.error('❌ Erro ao processar cadastro:', error);
     
     return NextResponse.json({ 
-      success: true, 
-      message: 'E-mail cadastrado com sucesso!' 
-    });
+      error: 'Erro interno do servidor' 
+    }, { status: 500 });
   }
 }
-// force recompile
