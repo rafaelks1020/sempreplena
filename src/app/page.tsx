@@ -606,7 +606,12 @@ export default function Home() {
               Débora Massoterapeuta
             </h3>
 
-            <div style={{ marginBottom: isMobile ? "15px" : "20px", textAlign: "center" }}>
+            <div
+              style={{
+                marginBottom: isMobile ? "15px" : "20px",
+                textAlign: "center",
+              }}
+            >
               <p
                 style={{
                   margin: "5px 0",
@@ -646,7 +651,12 @@ export default function Home() {
               </a>
             </div>
 
-            <div style={{ marginBottom: isMobile ? "15px" : "20px", textAlign: "center" }}>
+            <div
+              style={{
+                marginBottom: isMobile ? "15px" : "20px",
+                textAlign: "center",
+              }}
+            >
               <p
                 style={{
                   margin: "5px 0",
@@ -729,10 +739,10 @@ export default function Home() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d959.5785128412124!2d-47.92046711307146!3d-15.8400829900102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a255f35d1d99b%3A0x7d563ecd6199802e!2sLinea%20Vitta!5e0!3m2!1spt-BR!2sbr!4v1757360988065!5m2!1spt-BR!2sbr"
               width="100%"
               height="100%"
-              style={{ 
-                border: 0, 
+              style={{
+                border: 0,
                 minHeight: isMobile ? "250px" : "300px",
-                height: "100%"
+                height: "100%",
               }}
               allowFullScreen={true}
               loading="lazy"
