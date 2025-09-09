@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -20,11 +21,45 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
+  // Função para aplicar máscara de telefone brasileiro
+  const formatPhone = (value: string) => {
+    // Remove tudo que não é número
+    const numbers = value.replace(/\D/g, "");
+
+    // Aplica a máscara baseado no tamanho
+    if (numbers.length <= 2) {
+      return `(${numbers}`;
+    } else if (numbers.length <= 7) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+    } else if (numbers.length <= 11) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(
+        7
+      )}`;
+    } else {
+      // Limita a 11 dígitos
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(
+        7,
+        11
+      )}`;
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedPhone = formatPhone(e.target.value);
+    setPhone(formattedPhone);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
       setMessage("Por favor, digite um e-mail válido");
+      setIsSuccess(false);
+      return;
+    }
+
+    if (!phone || phone.replace(/\D/g, "").length < 10) {
+      setMessage("Por favor, digite um WhatsApp válido com DDD");
       setIsSuccess(false);
       return;
     }
@@ -38,17 +73,18 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, phone }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setMessage(
-          "✨ E-mail cadastrado com sucesso! Você será avisado(a) em primeira mão!"
+          "✨ Dados cadastrados com sucesso! Você será avisado(a) em primeira mão!"
         );
         setIsSuccess(true);
         setEmail("");
+        setPhone("");
       } else {
         setMessage(data.error || "Erro ao cadastrar e-mail");
         setIsSuccess(false);
@@ -150,7 +186,7 @@ export default function Home() {
       >
         <img
           src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
-          alt="Spa e Estética - SemprePlena"
+          alt="Spa e Estética - Sempre Plena"
           style={{
             width: "100%",
             height: "100%",
@@ -286,6 +322,27 @@ export default function Home() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Seu melhor e-mail"
+            disabled={isLoading}
+            style={{
+              padding: "clamp(8px, 3vw, 12px) clamp(15px, 4vw, 20px)",
+              borderRadius: "25px",
+              border: "2px solid #9c7a47",
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              color: "#9c7a47",
+              textAlign: "center",
+              outline: "none",
+              width: "100%",
+              maxWidth: "300px",
+              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+              opacity: isLoading ? 0.7 : 1,
+              cursor: isLoading ? "not-allowed" : "text",
+            }}
+          />
+          <input
+            type="tel"
+            value={phone}
+            onChange={handlePhoneChange}
+            placeholder="Seu WhatsApp (61) 98888-7777"
             disabled={isLoading}
             style={{
               padding: "clamp(8px, 3vw, 12px) clamp(15px, 4vw, 20px)",

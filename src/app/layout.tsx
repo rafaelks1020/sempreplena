@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   keywords:
     "estética, massoterapia, spa, beleza, bem-estar, relaxamento, SemprePlena",
-  authors: [{ name: "SemprePlena" }],
+  authors: [{ name: "Sempre Plena" }],
   openGraph: {
     title: "SemprePlena - Em Breve",
     description: "Sua nova clínica de estética e massoterapia está chegando!",
