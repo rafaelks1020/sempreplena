@@ -74,7 +74,7 @@ export default function Home() {
             className="text-2xl md:text-4xl font-light mb-4"
             style={{ color: "#9c7a47" }}
           >
-            SEMPREPLENA
+            SEMPRE PLENA
           </h2>
           <p
             className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"

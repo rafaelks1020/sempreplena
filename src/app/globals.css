@@ -45,3 +45,103 @@ body {
     transform: scale(1.05);
   }
 }
+
+/* Animação para o CTA chamativo */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  100% {
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--golden-text) 25%,
+    #d4af37 50%,
+    var(--golden-text) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+.floating-element {
+  animation: subtleFloat 6s ease-in-out infinite;
+}
+
+/* Animação para destacar ainda mais o CTA */
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(218, 165, 32, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(218, 165, 32, 0.8));
+  }
+}
+
+/* Animações para o novo botão CTA chamativo */
+@keyframes shimmer-bg {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Efeito de pulsação suave para chamar atenção */
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: translateY(-3px) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+  }
+}

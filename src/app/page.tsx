@@ -217,7 +217,7 @@ export default function Home() {
           zIndex: 10,
         }}
       >
-        SEMPREPLENA
+        SEMPRE PLENA
       </h2>
 
       <p
@@ -281,29 +281,68 @@ export default function Home() {
           zIndex: 10,
           padding: "0 20px",
           width: "100%",
-          maxWidth: "400px",
+          maxWidth: "450px",
         }}
       >
-        <p style={{ fontSize: "clamp(0.9rem, 3.5vw, 1rem)" }}>
-          Cadastre-se para receber novidades em primeira mão
-        </p>
+        <div style={{ 
+          textAlign: "center",
+          marginBottom: "10px",
+          padding: "20px",
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "20px",
+          border: "1px solid rgba(156, 122, 71, 0.2)",
+          backdropFilter: "blur(10px)"
+        }}>
+          <p style={{ 
+            fontSize: "clamp(1.1rem, 4vw, 1.3rem)",
+            fontWeight: "600",
+            color: "#9c7a47",
+            margin: "0 0 10px 0",
+            lineHeight: "1.3"
+          }}>
+            🎁 <strong>Seja a primeira a saber!</strong>
+          </p>
+          <p style={{ 
+            fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+            color: "#9c7a47",
+            margin: "0",
+            opacity: 0.9,
+            lineHeight: "1.4"
+          }}>
+            Receba em <strong>primeira mão</strong> nossos tratamentos exclusivos, 
+            promoções especiais e dicas de beleza! ✨
+          </p>
+        </div>
 
         {message && (
           <div
             style={{
-              padding: "10px 20px",
-              borderRadius: "15px",
+              padding: "15px 25px",
+              borderRadius: "20px",
               backgroundColor: isSuccess
-                ? "rgba(76, 175, 80, 0.1)"
-                : "rgba(244, 67, 54, 0.1)",
+                ? "linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(129, 199, 132, 0.15) 100%)"
+                : "linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(239, 83, 80, 0.15) 100%)",
               border: `2px solid ${isSuccess ? "#4CAF50" : "#F44336"}`,
               color: isSuccess ? "#2E7D32" : "#C62828",
-              fontSize: "clamp(0.8rem, 3vw, 0.9rem)",
+              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
               textAlign: "center",
               maxWidth: "100%",
+              boxShadow: `0 8px 25px ${isSuccess ? "rgba(76, 175, 80, 0.2)" : "rgba(244, 67, 54, 0.2)"}`,
+              fontWeight: "600",
+              animation: "fadeInUp 0.5s ease-out",
             }}
           >
-            {message}
+            {isSuccess ? (
+              <div>
+                <div style={{ fontSize: "1.5em", marginBottom: "5px" }}>🎉</div>
+                <div><strong>Perfeito!</strong> Você foi cadastrada com sucesso!</div>
+                <div style={{ fontSize: "0.9em", marginTop: "5px", opacity: 0.8 }}>
+                  Em breve você receberá nossas novidades exclusivas! 💌
+                </div>
+              </div>
+            ) : (
+              message
+            )}
           </div>
         )}
 
@@ -321,63 +360,325 @@ export default function Home() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Seu melhor e-mail"
+            placeholder="💌 Seu melhor e-mail"
             disabled={isLoading}
             style={{
-              padding: "clamp(8px, 3vw, 12px) clamp(15px, 4vw, 20px)",
-              borderRadius: "25px",
-              border: "2px solid #9c7a47",
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              padding: "clamp(12px, 4vw, 16px) clamp(20px, 5vw, 24px)",
+              borderRadius: "30px",
+              border: "2px solid rgba(156, 122, 71, 0.3)",
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
               color: "#9c7a47",
               textAlign: "center",
               outline: "none",
               width: "100%",
-              maxWidth: "300px",
-              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+              maxWidth: "350px",
+              fontSize: "clamp(1rem, 4vw, 1.1rem)",
               opacity: isLoading ? 0.7 : 1,
               cursor: isLoading ? "not-allowed" : "text",
+              transition: "all 0.3s ease",
+              boxShadow: "0 4px 15px rgba(156, 122, 71, 0.1)",
+              backdropFilter: "blur(10px)",
+            }}
+            onFocus={(e) => {
+              const target = e.target as HTMLInputElement;
+              target.style.border = "2px solid #FF6B6B";
+              target.style.boxShadow = "0 8px 25px rgba(255, 107, 107, 0.2)";
+              target.style.transform = "translateY(-2px)";
+            }}
+            onBlur={(e) => {
+              const target = e.target as HTMLInputElement;
+              target.style.border = "2px solid rgba(156, 122, 71, 0.3)";
+              target.style.boxShadow = "0 4px 15px rgba(156, 122, 71, 0.1)";
+              target.style.transform = "translateY(0)";
             }}
           />
           <input
             type="tel"
             value={phone}
             onChange={handlePhoneChange}
-            placeholder="Seu WhatsApp (61) 98888-7777"
+            placeholder="📱 Seu WhatsApp (61) 98888-7777"
             disabled={isLoading}
             style={{
-              padding: "clamp(8px, 3vw, 12px) clamp(15px, 4vw, 20px)",
-              borderRadius: "25px",
-              border: "2px solid #9c7a47",
-              backgroundColor: "rgba(255, 255, 255, 0.5)",
+              padding: "clamp(12px, 4vw, 16px) clamp(20px, 5vw, 24px)",
+              borderRadius: "30px",
+              border: "2px solid rgba(156, 122, 71, 0.3)",
+              backgroundColor: "rgba(255, 255, 255, 0.8)",
               color: "#9c7a47",
               textAlign: "center",
               outline: "none",
               width: "100%",
-              maxWidth: "300px",
-              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+              maxWidth: "350px",
+              fontSize: "clamp(1rem, 4vw, 1.1rem)",
               opacity: isLoading ? 0.7 : 1,
               cursor: isLoading ? "not-allowed" : "text",
+              transition: "all 0.3s ease",
+              boxShadow: "0 4px 15px rgba(156, 122, 71, 0.1)",
+              backdropFilter: "blur(10px)",
+            }}
+            onFocus={(e) => {
+              const target = e.target as HTMLInputElement;
+              target.style.border = "2px solid #FF6B6B";
+              target.style.boxShadow = "0 8px 25px rgba(255, 107, 107, 0.2)";
+              target.style.transform = "translateY(-2px)";
+            }}
+            onBlur={(e) => {
+              const target = e.target as HTMLInputElement;
+              target.style.border = "2px solid rgba(156, 122, 71, 0.3)";
+              target.style.boxShadow = "0 4px 15px rgba(156, 122, 71, 0.1)";
+              target.style.transform = "translateY(0)";
             }}
           />
           <button
             type="submit"
             disabled={isLoading}
             style={{
-              padding: "clamp(8px, 3vw, 12px) clamp(20px, 5vw, 30px)",
-              borderRadius: "25px",
+              padding: "clamp(16px, 5vw, 24px) clamp(32px, 8vw, 48px)",
+              borderRadius: "50px",
               border: "none",
-              backgroundColor: isLoading ? "#ccc" : "#9c7a47",
-              color: "#f3d9d1",
-              fontWeight: "bold",
+              background: isLoading 
+                ? "linear-gradient(135deg, #ccc 0%, #999 100%)"
+                : "linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #FFB6B6 50%, #FF8E8E 75%, #FF6B6B 100%)",
+              backgroundSize: isLoading ? "100% 100%" : "200% 100%",
+              color: "#fff",
+              fontWeight: "800",
               cursor: isLoading ? "not-allowed" : "pointer",
-              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
-              transition: "all 0.3s ease",
-              opacity: isLoading ? 0.7 : 1,
+              fontSize: "clamp(1.1rem, 4.5vw, 1.4rem)",
+              transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+              opacity: isLoading ? 0.6 : 1,
+              letterSpacing: "0.5px",
+              position: "relative",
+              overflow: "hidden",
+              boxShadow: isLoading 
+                ? "0 4px 15px rgba(0,0,0,0.1)"
+                : "0 15px 35px rgba(255, 107, 107, 0.4), 0 5px 15px rgba(255, 107, 107, 0.2)",
+              transform: isLoading ? "none" : "translateY(-3px)",
+              textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+              animation: isLoading ? "none" : "shimmer-bg 3s ease-in-out infinite",
+              width: "100%",
+              maxWidth: "350px",
+            }}
+            onMouseEnter={(e) => {
+              if (!isLoading) {
+                const target = e.target as HTMLButtonElement;
+                target.style.transform = "translateY(-6px) scale(1.02)";
+                target.style.boxShadow = "0 25px 50px rgba(255, 107, 107, 0.5), 0 10px 25px rgba(255, 107, 107, 0.3)";
+                target.style.backgroundPosition = "100% 0";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isLoading) {
+                const target = e.target as HTMLButtonElement;
+                target.style.transform = "translateY(-3px) scale(1)";
+                target.style.boxShadow = "0 15px 35px rgba(255, 107, 107, 0.4), 0 5px 15px rgba(255, 107, 107, 0.2)";
+                target.style.backgroundPosition = "0% 0";
+              }
             }}
           >
-            {isLoading ? "📧 Cadastrando..." : "Quero ser avisado(a)"}
+            <span style={{
+              position: "relative",
+              zIndex: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px"
+            }}>
+              {isLoading ? (
+                <>
+                  <span style={{ 
+                    animation: "spin 1s linear infinite",
+                    display: "inline-block"
+                  }}>⏳</span>
+                  Cadastrando...
+                </>
+              ) : (
+                <>
+                  <span style={{ fontSize: "1.2em" }}>🎯</span>
+                  SIM! Quero ser avisada
+                  <span style={{ fontSize: "1.2em" }}>✨</span>
+                </>
+              )}
+            </span>
+            
+            {!isLoading && (
+              <div style={{
+                position: "absolute",
+                top: 0,
+                left: "-100%",
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
+                animation: "shine 2.5s ease-in-out infinite",
+                zIndex: 1,
+              }} />
+            )}
           </button>
         </form>
+      </div>
+
+      {/* Seção de Contatos */}
+      <div
+        style={{
+          marginTop: "60px",
+          width: "100%",
+          textAlign: "center",
+          position: "relative",
+          zIndex: 10,
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "clamp(1.5rem, 5vw, 2rem)",
+            fontWeight: "300",
+            color: "#9c7a47",
+            marginBottom: "30px",
+            textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+          }}
+        >
+          Entre em Contato
+        </h2>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            gap: "30px",
+            alignItems: "stretch",
+            justifyContent: "center",
+            maxWidth: "1000px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          {/* Informações de Contato */}
+          <div
+            style={{
+              flex: 1,
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
+              borderRadius: "20px",
+              padding: "40px 30px",
+              border: "2px solid rgba(156, 122, 71, 0.3)",
+              boxShadow: "0 8px 25px rgba(156, 122, 71, 0.15)",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              minHeight: "300px",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <h3
+              style={{
+                fontSize: "clamp(1.3rem, 4vw, 1.5rem)",
+                color: "#9c7a47",
+                marginBottom: "25px",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              Débora Massoterapeuta
+            </h3>
+
+            <div style={{ marginBottom: "20px", textAlign: "center" }}>
+              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47" }}>
+                📱 <strong>WhatsApp:</strong>
+              </p>
+              <a
+                href="https://wa.me/5561998044594"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#25D366",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  fontSize: "clamp(1rem, 3.5vw, 1.2rem)",
+                  display: "inline-block",
+                  padding: "8px 15px",
+                  backgroundColor: "rgba(37, 211, 102, 0.1)",
+                  borderRadius: "15px",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.backgroundColor = "rgba(37, 211, 102, 0.2)";
+                  target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.backgroundColor = "rgba(37, 211, 102, 0.1)";
+                  target.style.transform = "scale(1)";
+                }}
+              >
+                (61) 99804-4594
+              </a>
+            </div>
+
+            <div style={{ marginBottom: "20px", textAlign: "center" }}>
+              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47" }}>
+                📷 <strong>Instagram:</strong>
+              </p>
+              <a
+                href="https://instagram.com/_deboramassoterapeuta"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#E4405F",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  fontSize: "clamp(1rem, 3.5vw, 1.2rem)",
+                  display: "inline-block",
+                  padding: "8px 15px",
+                  backgroundColor: "rgba(228, 64, 95, 0.1)",
+                  borderRadius: "15px",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.backgroundColor = "rgba(228, 64, 95, 0.2)";
+                  target.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.backgroundColor = "rgba(228, 64, 95, 0.1)";
+                  target.style.transform = "scale(1)";
+                }}
+              >
+                @_deboramassoterapeuta
+              </a>
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47", fontWeight: "bold" }}>
+                📍 <strong>Endereço:</strong>
+              </p>
+              <p style={{ margin: "8px 0", fontSize: "clamp(0.9rem, 3vw, 1rem)", color: "#9c7a47", opacity: 0.9, lineHeight: "1.4" }}>
+                Linea Vitta Centro Clínico<br />
+                Asa Sul, Brasília - DF
+              </p>
+            </div>
+          </div>
+
+          {/* Mapa */}
+          <div
+            style={{
+              flex: 1,
+              borderRadius: "20px",
+              overflow: "hidden",
+              border: "2px solid rgba(156, 122, 71, 0.3)",
+              minHeight: "300px",
+              boxShadow: "0 8px 25px rgba(156, 122, 71, 0.15)",
+            }}
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d959.5785128412124!2d-47.92046711307146!3d-15.8400829900102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a255f35d1d99b%3A0x7d563ecd6199802e!2sLinea%20Vitta!5e0!3m2!1spt-BR!2sbr!4v1757360988065!5m2!1spt-BR!2sbr"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: "300px" }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Localização Linea Vitta Centro Clínico"
+            ></iframe>
+          </div>
+        </div>
       </div>
 
       {/* Footer */}

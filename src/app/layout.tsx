@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "SemprePlena - Clinica de Estetica e Massoterapia | Em Breve",
   description:
-    "Em breve: SemprePlena, sua nova clinica de estetica e massoterapia. Tratamentos de beleza, relaxamento e bem-estar.",
+    "Em breve: Sempre Plena, sua nova clinica de estetica e massoterapia. Tratamentos de beleza, relaxamento e bem-estar.",
   robots: "index, follow",
   keywords:
     "estética, massoterapia, spa, beleza, bem-estar, relaxamento, SemprePlena",

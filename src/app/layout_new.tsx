@@ -17,7 +17,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "SemprePlena - Clinica de Estetica e Massoterapia | Em Breve",
   description:
-    "Em breve: SemprePlena, sua nova clinica de estetica e massoterapia. Tratamentos de beleza, relaxamento e bem-estar. Cadastre-se para receber novidades em primeira mao.",
+    "Em breve: Sempre Plena, sua nova clinica de estetica e massoterapia. Tratamentos de beleza, relaxamento e bem-estar. Cadastre-se para receber novidades em primeira mao.",
   keywords:
     "estetica, massoterapia, spa, beleza, bem-estar, relaxamento, tratamentos esteticos",
   authors: [{ name: "SemprePlena" }],
