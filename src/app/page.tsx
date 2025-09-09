@@ -168,29 +168,30 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Imagem principal do spa */}
+      {/* Logo principal */}
       <div
         style={{
-          marginBottom: "30px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          width: "min(300px, 70vw)",
-          height: "min(300px, 70vw)",
-          maxWidth: "300px",
-          maxHeight: "300px",
-          boxShadow: "0 20px 40px rgba(156, 122, 71, 0.3)",
-          border: "5px solid rgba(156, 122, 71, 0.2)",
+          marginBottom: "20px",
+          borderRadius: "12px",
+          width: "min(180px, 45vw)",
+          height: "min(180px, 45vw)",
+          maxWidth: "180px",
+          maxHeight: "180px",
           position: "relative",
           zIndex: 10,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <img
-          src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
-          alt="Spa e Estética - Sempre Plena"
+          src="/logo.png"
+          alt="SemprePlena - Logo"
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
+            filter: "drop-shadow(0 6px 12px rgba(156, 122, 71, 0.2))",
           }}
         />
       </div>
@@ -228,51 +229,18 @@ export default function Home() {
           opacity: 0.8,
           position: "relative",
           zIndex: 10,
-          margin: "0 auto",
+          margin: "0 auto 30px auto",
         }}
       >
         Sua clínica de estética e massoterapia está chegando para transformar
         sua experiência de bem-estar e beleza.
       </p>
 
+      {/* CTA PRINCIPAL - MOVED TO TOP */}
       <div
         style={{
-          marginTop: "clamp(20px, 5vw, 40px)",
-          display: "flex",
-          gap: "clamp(10px, 3vw, 20px)",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          position: "relative",
-          zIndex: 10,
-          padding: "0 10px",
-        }}
-      >
-        {[
-          "✨ Tratamentos Estéticos",
-          "💆‍♀️ Massoterapia",
-          "🌸 Relaxamento",
-          "💎 Beleza Natural",
-        ].map((service, index) => (
-          <div
-            key={index}
-            style={{
-              padding: "clamp(8px, 2vw, 10px) clamp(15px, 4vw, 20px)",
-              border: "2px solid #9c7a47",
-              borderRadius: "25px",
-              backgroundColor: "rgba(255, 255, 255, 0.3)",
-              transition: "transform 0.3s ease",
-              cursor: "pointer",
-              fontSize: "clamp(0.8rem, 3vw, 1rem)",
-            }}
-          >
-            {service}
-          </div>
-        ))}
-      </div>
-
-      <div
-        style={{
-          marginTop: "clamp(20px, 5vw, 40px)",
+          marginTop: "clamp(20px, 5vw, 30px)",
+          marginBottom: "clamp(30px, 6vw, 50px)",
           display: "flex",
           flexDirection: "column",
           gap: "15px",
@@ -284,33 +252,40 @@ export default function Home() {
           maxWidth: "450px",
         }}
       >
-        <div style={{ 
-          textAlign: "center",
-          marginBottom: "10px",
-          padding: "20px",
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
-          borderRadius: "20px",
-          border: "1px solid rgba(156, 122, 71, 0.2)",
-          backdropFilter: "blur(10px)"
-        }}>
-          <p style={{ 
-            fontSize: "clamp(1.1rem, 4vw, 1.3rem)",
-            fontWeight: "600",
-            color: "#9c7a47",
-            margin: "0 0 10px 0",
-            lineHeight: "1.3"
-          }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "10px",
+            padding: "20px",
+            backgroundColor: "rgba(255, 255, 255, 0.15)",
+            borderRadius: "20px",
+            border: "2px solid rgba(156, 122, 71, 0.3)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 8px 25px rgba(156, 122, 71, 0.15)",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "clamp(1.1rem, 4vw, 1.3rem)",
+              fontWeight: "600",
+              color: "#9c7a47",
+              margin: "0 0 10px 0",
+              lineHeight: "1.3",
+            }}
+          >
             🎁 <strong>Seja a primeira a saber!</strong>
           </p>
-          <p style={{ 
-            fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
-            color: "#9c7a47",
-            margin: "0",
-            opacity: 0.9,
-            lineHeight: "1.4"
-          }}>
-            Receba em <strong>primeira mão</strong> nossos tratamentos exclusivos, 
-            promoções especiais e dicas de beleza! ✨
+          <p
+            style={{
+              fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
+              color: "#9c7a47",
+              margin: "0",
+              opacity: 0.9,
+              lineHeight: "1.4",
+            }}
+          >
+            Receba em <strong>primeira mão</strong> nossos tratamentos
+            exclusivos, promoções especiais e dicas de beleza! ✨
           </p>
         </div>
 
@@ -327,7 +302,9 @@ export default function Home() {
               fontSize: "clamp(0.9rem, 3.5vw, 1rem)",
               textAlign: "center",
               maxWidth: "100%",
-              boxShadow: `0 8px 25px ${isSuccess ? "rgba(76, 175, 80, 0.2)" : "rgba(244, 67, 54, 0.2)"}`,
+              boxShadow: `0 8px 25px ${
+                isSuccess ? "rgba(76, 175, 80, 0.2)" : "rgba(244, 67, 54, 0.2)"
+              }`,
               fontWeight: "600",
               animation: "fadeInUp 0.5s ease-out",
             }}
@@ -335,8 +312,12 @@ export default function Home() {
             {isSuccess ? (
               <div>
                 <div style={{ fontSize: "1.5em", marginBottom: "5px" }}>🎉</div>
-                <div><strong>Perfeito!</strong> Você foi cadastrada com sucesso!</div>
-                <div style={{ fontSize: "0.9em", marginTop: "5px", opacity: 0.8 }}>
+                <div>
+                  <strong>Perfeito!</strong> Você foi cadastrada com sucesso!
+                </div>
+                <div
+                  style={{ fontSize: "0.9em", marginTop: "5px", opacity: 0.8 }}
+                >
                   Em breve você receberá nossas novidades exclusivas! 💌
                 </div>
               </div>
@@ -435,7 +416,7 @@ export default function Home() {
               padding: "clamp(16px, 5vw, 24px) clamp(32px, 8vw, 48px)",
               borderRadius: "50px",
               border: "none",
-              background: isLoading 
+              background: isLoading
                 ? "linear-gradient(135deg, #ccc 0%, #999 100%)"
                 : "linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 25%, #FFB6B6 50%, #FF8E8E 75%, #FF6B6B 100%)",
               backgroundSize: isLoading ? "100% 100%" : "200% 100%",
@@ -448,12 +429,14 @@ export default function Home() {
               letterSpacing: "0.5px",
               position: "relative",
               overflow: "hidden",
-              boxShadow: isLoading 
+              boxShadow: isLoading
                 ? "0 4px 15px rgba(0,0,0,0.1)"
                 : "0 15px 35px rgba(255, 107, 107, 0.4), 0 5px 15px rgba(255, 107, 107, 0.2)",
               transform: isLoading ? "none" : "translateY(-3px)",
               textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-              animation: isLoading ? "none" : "shimmer-bg 3s ease-in-out infinite",
+              animation: isLoading
+                ? "none"
+                : "shimmer-bg 3s ease-in-out infinite",
               width: "100%",
               maxWidth: "350px",
             }}
@@ -461,7 +444,8 @@ export default function Home() {
               if (!isLoading) {
                 const target = e.target as HTMLButtonElement;
                 target.style.transform = "translateY(-6px) scale(1.02)";
-                target.style.boxShadow = "0 25px 50px rgba(255, 107, 107, 0.5), 0 10px 25px rgba(255, 107, 107, 0.3)";
+                target.style.boxShadow =
+                  "0 25px 50px rgba(255, 107, 107, 0.5), 0 10px 25px rgba(255, 107, 107, 0.3)";
                 target.style.backgroundPosition = "100% 0";
               }
             }}
@@ -469,25 +453,32 @@ export default function Home() {
               if (!isLoading) {
                 const target = e.target as HTMLButtonElement;
                 target.style.transform = "translateY(-3px) scale(1)";
-                target.style.boxShadow = "0 15px 35px rgba(255, 107, 107, 0.4), 0 5px 15px rgba(255, 107, 107, 0.2)";
+                target.style.boxShadow =
+                  "0 15px 35px rgba(255, 107, 107, 0.4), 0 5px 15px rgba(255, 107, 107, 0.2)";
                 target.style.backgroundPosition = "0% 0";
               }
             }}
           >
-            <span style={{
-              position: "relative",
-              zIndex: 2,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px"
-            }}>
+            <span
+              style={{
+                position: "relative",
+                zIndex: 2,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+              }}
+            >
               {isLoading ? (
                 <>
-                  <span style={{ 
-                    animation: "spin 1s linear infinite",
-                    display: "inline-block"
-                  }}>⏳</span>
+                  <span
+                    style={{
+                      animation: "spin 1s linear infinite",
+                      display: "inline-block",
+                    }}
+                  >
+                    ⏳
+                  </span>
                   Cadastrando...
                 </>
               ) : (
@@ -498,21 +489,59 @@ export default function Home() {
                 </>
               )}
             </span>
-            
+
             {!isLoading && (
-              <div style={{
-                position: "absolute",
-                top: 0,
-                left: "-100%",
-                width: "100%",
-                height: "100%",
-                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
-                animation: "shine 2.5s ease-in-out infinite",
-                zIndex: 1,
-              }} />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: "-100%",
+                  width: "100%",
+                  height: "100%",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)",
+                  animation: "shine 2.5s ease-in-out infinite",
+                  zIndex: 1,
+                }}
+              />
             )}
           </button>
         </form>
+      </div>
+
+      <div
+        style={{
+          marginTop: "clamp(20px, 5vw, 40px)",
+          display: "flex",
+          gap: "clamp(10px, 3vw, 20px)",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          position: "relative",
+          zIndex: 10,
+          padding: "0 10px",
+        }}
+      >
+        {[
+          "✨ Tratamentos Estéticos",
+          "💆‍♀️ Massoterapia",
+          "🌸 Relaxamento",
+          "💎 Beleza Natural",
+        ].map((service, index) => (
+          <div
+            key={index}
+            style={{
+              padding: "clamp(8px, 2vw, 10px) clamp(15px, 4vw, 20px)",
+              border: "2px solid #9c7a47",
+              borderRadius: "25px",
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+              transition: "transform 0.3s ease",
+              cursor: "pointer",
+              fontSize: "clamp(0.8rem, 3vw, 1rem)",
+            }}
+          >
+            {service}
+          </div>
+        ))}
       </div>
 
       {/* Seção de Contatos */}
@@ -578,7 +607,13 @@ export default function Home() {
             </h3>
 
             <div style={{ marginBottom: "20px", textAlign: "center" }}>
-              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47" }}>
+              <p
+                style={{
+                  margin: "8px 0",
+                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  color: "#9c7a47",
+                }}
+              >
                 📱 <strong>WhatsApp:</strong>
               </p>
               <a
@@ -612,7 +647,13 @@ export default function Home() {
             </div>
 
             <div style={{ marginBottom: "20px", textAlign: "center" }}>
-              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47" }}>
+              <p
+                style={{
+                  margin: "8px 0",
+                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  color: "#9c7a47",
+                }}
+              >
                 📷 <strong>Instagram:</strong>
               </p>
               <a
@@ -646,11 +687,27 @@ export default function Home() {
             </div>
 
             <div style={{ textAlign: "center" }}>
-              <p style={{ margin: "8px 0", fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)", color: "#9c7a47", fontWeight: "bold" }}>
+              <p
+                style={{
+                  margin: "8px 0",
+                  fontSize: "clamp(0.95rem, 3.5vw, 1.1rem)",
+                  color: "#9c7a47",
+                  fontWeight: "bold",
+                }}
+              >
                 📍 <strong>Endereço:</strong>
               </p>
-              <p style={{ margin: "8px 0", fontSize: "clamp(0.9rem, 3vw, 1rem)", color: "#9c7a47", opacity: 0.9, lineHeight: "1.4" }}>
-                Linea Vitta Centro Clínico<br />
+              <p
+                style={{
+                  margin: "8px 0",
+                  fontSize: "clamp(0.9rem, 3vw, 1rem)",
+                  color: "#9c7a47",
+                  opacity: 0.9,
+                  lineHeight: "1.4",
+                }}
+              >
+                Linea Vitta Centro Clínico
+                <br />
                 Asa Sul, Brasília - DF
               </p>
             </div>

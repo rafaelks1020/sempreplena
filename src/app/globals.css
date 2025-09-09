@@ -49,13 +49,16 @@ body {
 /* Animação para o CTA chamativo */
 @keyframes pulse-glow {
   0% {
-    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   50% {
-    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+    box-shadow: 0 8px 30px rgba(218, 165, 32, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
   100% {
-    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+    box-shadow: 0 8px 20px rgba(218, 165, 32, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -100,7 +103,8 @@ body {
 
 /* Animação para destacar ainda mais o CTA */
 @keyframes glow-pulse {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 5px rgba(218, 165, 32, 0.5));
   }
   50% {
@@ -138,7 +142,8 @@ body {
 
 /* Efeito de pulsação suave para chamar atenção */
 @keyframes gentle-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(-3px) scale(1);
   }
   50% {
